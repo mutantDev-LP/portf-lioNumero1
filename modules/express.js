@@ -1,3 +1,15 @@
+export function createUser() {
+  app.post("/users", async (req, res) => {
+    try {
+      const user = await UserModel.create(req.body);
+
+      res.status(201).json(user);
+    } catch (error) {
+      res.status(500).send(error.massage);
+    }
+  });
+}
+
 const express = require("express");
 const UserModel = require("../src/models/user.model");
 
@@ -44,15 +56,17 @@ app.get("/users/:id", async (req, res) => {
   }
 });
 
-app.post("/users", async (req, res) => {
-  try {
-    const user = await UserModel.create(req.body);
+function createUser() {
+  app.post("/users", async (req, res) => {
+    try {
+      const user = await UserModel.create(req.body);
 
-    res.status(201).json(user);
-  } catch (error) {
-    res.status(500).send(error.massage);
-  }
-});
+      res.status(201).json(user);
+    } catch (error) {
+      res.status(500).send(error.massage);
+    }
+  });
+}
 
 app.patch("/users/:id", async (req, res) => {
   try {
