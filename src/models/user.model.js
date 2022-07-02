@@ -1,9 +1,9 @@
 const mongoose = require("mongoose");
+import { nome } from "../register/partials/script";
 
 const userSchema = new mongoose.Schema({
   firstName: {
-    type: String,
-    required: true,
+    nome,
   },
   lastName: {
     type: String,
